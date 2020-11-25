@@ -21,6 +21,30 @@
   </head>
 
   <body>
+
+    <!-- Profile Edit Modal -->
+    <div class="modal fade" id="editProfileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editProfileTitle">Edit Profile</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /. End Profile Edit Modal -->
+
+
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
       <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Company name</a>
       <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
@@ -37,82 +61,18 @@
           <div class="sidebar-sticky">
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link active" href="#">
-                  <span data-feather="home"></span>
-                  Dashboard <span class="sr-only">(current)</span>
-                </a>
+                
               </li>
               <div class="form-group">
                 <select class="custom-select" id="department-select"></select>
+                <select class="custom-select" id="location-select"></select>
                 <input class="form-control"  id="employee-name-search" type="text" name="employee-first-name">
                 <button class="btn-primary" id="name-btn">Search</button>
                 
               </div>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file"></span>
-                  Orders
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="shopping-cart"></span>
-                  Products
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="users"></span>
-                  Customers
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="bar-chart-2"></span>
-                  Reports
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="layers"></span>
-                  Integrations
-                </a>
-              </li>
-            </ul>
+            
 
-            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-              <span>Saved reports</span>
-              <a class="d-flex align-items-center text-muted" href="#">
-                <span data-feather="plus-circle"></span>
-              </a>
-            </h6>
-            <ul class="nav flex-column mb-2">
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file-text"></span>
-                  Current month
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file-text"></span>
-                  Last quarter
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file-text"></span>
-                  Social engagement
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file-text"></span>
-                  Year-end sale
-                </a>
-              </li>
-            </ul>
-          </div>
+           
         </nav>
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
@@ -120,17 +80,8 @@
             <h1 class="h2">Dashboard</h1>
             
           </div>
-          <!-- <h1 class="h2" id="department-title"></h1>
-
-          <div class="row shadow p-3 mb-5 bg-white rounded"> 
-            <div class="col shadow-sm p-3 mb-3 bg-white rounded">
-             <div class="row" id="results">
-            </div>
-          </div>
-
-          </div>
-          
-          </div> -->
+         
+          <h1 class="h2" id="department-title"></h1>
           
           <div class="col-12 col-md-8" id="results-container">
             <div class="row shadow p-3 mb-5 bg-white rounded">
