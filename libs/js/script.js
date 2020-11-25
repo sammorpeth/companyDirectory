@@ -38,17 +38,13 @@ $('#name-btn').on('click',function() {
     success: function(result) {
    
       const employee = result['data'][0];
-      $('#employee-info-area').html('');
+      $('#results').html('');
       const employeeCardHTML = `
-      <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">${employee.firstName} ${employee.lastName}</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
-      </div>`
+        <div class="col-12 col-lg-6 shadow-sm p-3 mb-3 bg-white rounded">
+          <div class="row"></div>
+        </div>`
 
-      $('#employee-info-area').append(employeeCardHTML);
+      $('#results').append(employeeCardHTML);
 
 
     },
@@ -73,23 +69,23 @@ $('#department-select').on('change',function() {
     },
     
     success: function(result) {
-      $('#employee-info-area').html('');
+      $('#results').html('');
       // $('#department-title').html('');
       console.log(result['data']);
       result['data'].forEach(employee => {
-        const employeeHTML = `<div class="card">
-        <div class="card-body">
-          <h5 class="card-title">${employee.firstName} ${employee.lastName}</h5>
-          <ul>
-            <li>Email: ${employee.email}</li>
-            <li>Job Title: ${employee.jobTitle}</li>
-            <li>Department: ${employee.department}</li>
-            <li>Location: ${employee.location}</li>
-          </ul>
-        </div>
-        
-      </div>`
-       $('#employee-info-area').append(employeeHTML);
+        const employeeHTML = `<div class="col-12 col-lg-6 shadow-sm p-3 mb-3 bg-white rounded">
+                                <div class="row">
+                                  <h5 >${employee.firstName} ${employee.lastName}</h5>
+                                    <ul>
+                                      <li>Email: ${employee.email}</li>
+                                      <li>Job Title: ${employee.jobTitle}</li>
+                                      <li>Department: ${employee.department}</li>
+                                      <li>Location: ${employee.location}</li>
+                                    </ul>
+                                  </div>
+                                </div>
+                                `
+       $('#results').append(employeeHTML);
       })
       $('#department-title').html($('#department-select').val());
 
