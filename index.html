@@ -33,7 +33,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
+          <div class="modal-body" id="editProfileBody">
            
           </div>
           <div class="modal-footer">
@@ -50,13 +50,12 @@
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="editProfileTitle">Edit Departments</h5>
+            <h5 class="modal-title" id="editDepartmentTitle">Add a new department</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <p>Enter the new department's name</p>
             <form action="" method="post">
               <label for="department">Department</label>
               <input class="form-control" id="new-dpt-name" type="text" name="department" placeholder="E.g. Logistics">
@@ -79,13 +78,12 @@
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="editProfileTitle">Edit Locations</h5>
+            <h5 class="modal-title" id="editLocationsTitle">Add a new location</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <p>Enter the new location's name</p>
             <label for="location">Location</label>
             <input class="form-control" id="new-location-name" type="text" name="location" placeholder="E.g. Hanoi">
           </div>
@@ -97,6 +95,38 @@
       </div>
     </div>
     <!-- /. Location Edit Modal -->
+
+      <!-- Add Profile Modal -->
+      <div class="modal fade" id="addProfileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="addProfileTitle">Add Employee Information</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <label for="new-employee-fname">First Name</label>
+              <input class="form-control" id="new-employee-fname" type="text" name="new-employee-fname" required>
+              <label for="new-employee-lname">Last Name</label>
+              <input class="form-control" id="new-employee-lname" type="text" name="new-employee-lname"  required>
+              <label for="new-employee-job">Job Title</label>
+              <input class="form-control" id="new-employee-job" type="text" name="new-employee-job"  required>
+              <label for="new-employee-email">Email</label>
+              <input class="form-control" id="new-employee-email" type="email" name="new-employee-email"  required>
+              <label for="new-employee-location">Department</label>
+              <select class="custom-select" id="new-employee-department-select"></select>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" id="insert-employee-btn">Submit</button>
+  
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /. End Add Profile Modal -->
 
     <!-- /. END MODALS -->
 
@@ -124,10 +154,11 @@
                 <button type="button" class="btn btn-primary"  id="department-btn" data-toggle="modal" data-target="#editDepartmentModal">Edit Departments</button>
 
                 <select class="custom-select" id="location-select"></select>
-                <button type="button" class="btn btn-primary"  id="department-btn" data-toggle="modal" data-target="#editLocationModal">Edit Locations</button>
+                <button type="button" class="btn btn-primary"  id="location-btn" data-toggle="modal" data-target="#editLocationModal">Edit Locations</button>
 
                 <input class="form-control"  id="employee-name-search" type="text" name="employee-first-name">
                 <button class="btn btn-primary" id="name-btn">Search</button>
+                <button type="button" class="btn btn-primary"  id="add-profile-btn" data-toggle="modal" data-target="#addProfileModal">Add Employee</button>
                 
                 
               </div>
@@ -136,13 +167,13 @@
            
         </nav>
 
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+        <main role="main" class="col">
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
             <h1 class="h2">Dashboard</h1>
             
           </div>
          
-          <h1 class="h2" id="department-title"></h1>
+          <h1 class="h2" id="results-title"></h1>
           
           <div class="col-12 col-md-8" id="results-container">
             <div class="row shadow p-3 mb-5 bg-white rounded">
@@ -154,9 +185,6 @@
               </div>
             </div>
           </div>
-              
-              
-           
             
           </div>
 
