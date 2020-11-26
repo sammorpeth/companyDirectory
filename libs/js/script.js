@@ -18,6 +18,59 @@ const formatEmployeeInfo = (employee) => {
     
   return employeeHTML;
 }
+const appendDepartmentsToSelects = (selectName) => {
+  $.ajax({
+    url: "libs/php/getAllDepartments.php",
+    type: 'POST',
+    dataType: 'json',
+    
+    success: function(result) {
+      result['data'].forEach(element => {
+        $(selectName).append($('<option>', {
+          value: element['id'],
+          text: `${element['name']}`
+        }))
+       });
+  
+  
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+  
+      console.log(textStatus);
+      console.log(errorThrown);
+      console.log(jqXHR);
+    }
+  });
+}
+
+const appendLocationsToSelects = (selectName) => {
+  $.ajax({
+    url: `libs/php/getAllLocations.php`,
+    type: 'POST',
+    dataType: 'json',
+    
+    success: function(result) {
+      result['data'].forEach(element => {
+        $(selectName).append($('<option>', {
+          value: element['id'],
+          text: `${element['name']}`
+        }))
+       });
+  
+  
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+  
+      console.log(textStatus);
+      console.log(errorThrown);
+      console.log(jqXHR);
+    }
+  });
+}
+
+
+
+
 
 const getInfoById = (id) => {
   $.ajax({
@@ -42,52 +95,12 @@ const getInfoById = (id) => {
   });
 }
 
+// Initiates the page with select options etc. 
 $(document).ready(function() {
-  $.ajax({
-    url: "libs/php/getAllDepartments.php",
-    type: 'POST',
-    dataType: 'json',
-    
-    success: function(result) {
-      result['data'].forEach(element => {
-        $('#department-select').append($('<option>', {
-          value: element['name'],
-          text: `${element['name']}`
-        }))
-       });
-
-
-    },
-    error: function(jqXHR, textStatus, errorThrown) {
-
-      console.log(textStatus);
-      console.log(errorThrown);
-      console.log(jqXHR);
-    }
-  });
-
-  $.ajax({
-    url: "libs/php/getAllLocations.php",
-    type: 'POST',
-    dataType: 'json',
-    
-    success: function(result) {
-      result['data'].forEach(element => {
-        $('#location-select').append($('<option>', {
-          value: element['name'],
-          text: `${element['name']}`
-        }))
-       });
-
-
-    },
-    error: function(jqXHR, textStatus, errorThrown) {
-
-      console.log(textStatus);
-      console.log(errorThrown);
-      console.log(jqXHR);
-    }
-  });
+  
+  appendDepartmentsToSelects('#department-select');
+  appendLocationsToSelects('#location-select');
+  appendLocationsToSelects('#new-dpt-location-select');
 
   $.ajax({
     url: "libs/php/getAll.php",
@@ -145,6 +158,58 @@ $('#name-btn').on('click',function() {
   });
 }); 
 
+$('#insert-dpt-btn').on('click',function() {
+  console.log('hi');
+
+  $.ajax({
+    url: "libs/php/insertDepartment.php",
+    type: 'POST',
+    dataType: 'json',
+    data: {
+      name: $('#new-dpt-name').val(),
+      locationID: $('#new-dpt-location-select').val(),
+
+    },
+    
+    success: function(result) {
+      console.log('hi');
+
+
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+
+      console.log(textStatus);
+      console.log(errorThrown);
+      console.log(jqXHR);
+    }
+  });
+}); 
+
+$('#insert-location-btn').on('click',function() {
+  console.log('hi');
+
+  $.ajax({
+    url: "libs/php/insertLocation.php",
+    type: 'POST',
+    dataType: 'json',
+    data: {
+      name: $('#new-location-name').val(),
+    },
+    
+    success: function(result) {
+      console.log('hi');
+
+
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+
+      console.log(textStatus);
+      console.log(errorThrown);
+      console.log(jqXHR);
+    }
+  });
+}); 
+
 
 $('#department-select').on('change',function() {
 
@@ -153,7 +218,7 @@ $('#department-select').on('change',function() {
     type: 'POST',
     dataType: 'json',
     data: {
-      department: $('#department-select').val()
+      departmentID: $('#department-select').val()
     },
     
     success: function(result) {
@@ -164,7 +229,7 @@ $('#department-select').on('change',function() {
         const employeeHTML = formatEmployeeInfo(employee);
        $('#results').append(employeeHTML);
       })
-      $('#department-title').html($('#department-select').val());
+      // $('#department-title').html($('#department-select').html());
 
 
     },
@@ -209,6 +274,3 @@ $('#location-select').on('change',function() {
   });
 }); 
 
-$('#edit-icon').on('click', function() {
-  console.log('hi');
-})
