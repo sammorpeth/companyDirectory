@@ -38,7 +38,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-primary" id="update-current-employee-btn">Update</button>
           </div>
         </div>
       </div>
@@ -132,7 +132,7 @@
 
 
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Company name</a>
+      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Company Directory</a>
       <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
@@ -149,23 +149,22 @@
               <li class="nav-item">
                 
               </li>
-              <div class="form-group">
-                <select class="custom-select" id="department-select"></select>
-                <button type="button" class="btn btn-primary"  id="department-btn" data-toggle="modal" data-target="#editDepartmentModal">Edit Departments</button>
+              <form>
+                <div class="form-group">
+                  <select class="custom-select" id="department-select"></select>
+                  <button type="button" class="btn  btn-primary"  id="department-btn" data-toggle="modal" data-target="#editDepartmentModal">Edit Departments</button>
 
-                <select class="custom-select" id="location-select"></select>
-                <button type="button" class="btn btn-primary"  id="location-btn" data-toggle="modal" data-target="#editLocationModal">Edit Locations</button>
+                  <select class="custom-select" id="location-select"></select>
+                  <button type="button" class="btn btn-primary"  id="location-btn" data-toggle="modal" data-target="#editLocationModal">Edit Locations</button>
 
-                <input class="form-control"  id="employee-name-search" type="text" name="employee-first-name">
-                <button class="btn btn-primary" id="name-btn">Search</button>
-                <button type="button" class="btn btn-primary"  id="add-profile-btn" data-toggle="modal" data-target="#addProfileModal">Add Employee</button>
-                
-                
-              </div>
-            
+                  <input class="form-control"  id="employee-name-search" type="text" name="employee-first-name">
+                  <button class="btn btn-primary" id="name-btn">Search</button>
+                  <button type="button" class="btn btn-primary"  id="add-profile-btn" data-toggle="modal" data-target="#addProfileModal">Add Employee</button>
+                </div>
+              </form>
+          </nav>
 
-           
-        </nav>
+          
 
         <main role="main" class="col">
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">

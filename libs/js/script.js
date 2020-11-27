@@ -1,6 +1,10 @@
-
+// Format the HTML for the profile editing modal
 const formatEditProfileModal = (employee) => {
-  const editProfileHTML = ` <label for="current-employee-fname">First Name</label>
+
+  // Set the modal blank so it doesn't repeatedly add the HTML
+  $('#current-employee-form').remove();
+  const editProfileHTML = `<div id="current-employee-form">
+                            <label for="current-employee-fname">First Name</label>
                             <input class="form-control" id="current-employee-fname" type="text" name="current-employee-fname" value="${employee.firstName}" required>
                             <label for="current-employee-lname">Last Name</label>
                             <input class="form-control" id="current-employee-lname" type="text" name="current-employee-lname" value="${employee.lastName}" required>
@@ -9,18 +13,18 @@ const formatEditProfileModal = (employee) => {
                             <label for="current-employee-email">Email</label>
                             <input class="form-control" id="current-employee-email" type="email" name="current-employee-email" value="${employee.email}" required>
                             <label for="current-employee-location">Department</label>
-                            <select class="custom-select" id="current-employee-department-select">
-                            
-                            </select>`
+                            <select class="custom-select" id="current-employee-department-select"></select>
+                            <input id="current-employee-id" value="${employee.id}" hidden>
+
+                           <div>`
 
   appendDepartmentsToSelects('#current-employee-department-select');
 
-  $(`#current-employee-department-select option[value=${employee.departmentID}]`).attr("selected",true);
-  
 
   $('#editProfileBody').append(editProfileHTML);
 }
 
+// Get employee info by ID
 const getInfoById = (id) => {
   $.ajax({
     url: "libs/php/getEmployeeById.php",
@@ -46,24 +50,11 @@ const getInfoById = (id) => {
   });
 }
 
+// Format the HTML for the profile editing modal 
 const formatEmployeeInfo = (employee) => {
-    // const employeeHTML = `<div class="col-12 col-lg-6 shadow-sm p-3 mb-3 rounded employee-card">
-    //                         <h5 >${employee.firstName} ${employee.lastName}</h5>
-    //                         <p id="employee-id" hidden>${employee.id}</p>
-
-    //                         <ul>
-    //                           <li>Email: ${employee.email}</li>
-    //                           <li>Job Title: ${employee.jobTitle}</li>
-    //                           <li>Department: ${employee.department}</li>
-    //                           <li>Location: ${employee.location}</li>
-    //                           <button type="button" class="btn btn-primary edit-btn"  data-toggle="modal" data-target="#editProfileModal">Edit</button>
-    //                         </ul>
-    //                       </div>
-    //                       `
 
   let employeeHTML = $(`<div class="col-12 col-lg-6 shadow-sm p-3 mb-3 rounded employee-card">
                       <h5 >${employee.firstName} ${employee.lastName}</h5>
-                      <p id="employee-id" hidden>${employee.id}</p>
 
                       <ul>
                         <li>Email: ${employee.email}</li>
@@ -75,12 +66,13 @@ const formatEmployeeInfo = (employee) => {
                     </div>
                     `);
 
+  // Create HTML for edit button
   let editBtn = $(`<button type="button" class="btn btn-primary edit-btn"  data-toggle="modal" data-target="#editProfileModal">Edit</button>`);
+  // Add to the end of the employee DIV
   employeeHTML.append(editBtn);
 
-  editBtn.on('click', () => {
-    getInfoById(employee.id);
-  })
+  // Add function which allows the relevant profile info to be added to the profile editing modal 
+  editBtn.on('click', () => { getInfoById(employee.id); })
     
   return employeeHTML;
 }
@@ -140,11 +132,13 @@ const appendLocationsToSelects = (selectName) => {
 // Initiates the page with select options etc. 
 $(document).ready(function() {
   
+  // Append options
   appendDepartmentsToSelects('#department-select');
   appendDepartmentsToSelects('#new-employee-department-select');
   appendLocationsToSelects('#location-select');
   appendLocationsToSelects('#new-dpt-location-select');
 
+  // Append all the employees to the page on load
   $.ajax({
     url: "libs/php/getAll.php",
     type: 'POST',
@@ -170,7 +164,7 @@ $(document).ready(function() {
   });
 }); 
 
-
+// Search functionality for user's first name
 $('#name-btn').on('click',function() {
   console.log('hi');
 
@@ -201,6 +195,7 @@ $('#name-btn').on('click',function() {
   });
 }); 
 
+// Insert a new department through the edit departments modal
 $('#insert-dpt-btn').on('click',function() {
 
   $.ajax({
@@ -227,8 +222,8 @@ $('#insert-dpt-btn').on('click',function() {
   });
 }); 
 
+// Insert a new location through the edit locations modal
 $('#insert-location-btn').on('click',function() {
-
 
   $.ajax({
     url: "libs/php/insertLocation.php",
@@ -252,6 +247,7 @@ $('#insert-location-btn').on('click',function() {
   });
 }); 
 
+// Insert a new employee through the edit employee modal
 $('#insert-employee-btn').on('click',function() {
 
   $.ajax({
@@ -280,7 +276,35 @@ $('#insert-employee-btn').on('click',function() {
   });
 }); 
 
+$('#update-current-employee-btn').on('click', function() {
+  $.ajax({
+    url: "libs/php/updateCurrentEmployee.php",
+    type: 'POST',
+    dataType: 'json',
+    data: {
+      firstName : $('#current-employee-fname').val(),
+      lastName : $('#current-employee-lname').val(),
+      jobTitle : $('#current-employee-job').val(),
+      email : $('#current-employee-email').val(),
+      departmentID : $('#current-employee-department-select').val(),
+      employeeID : $('#current-employee-id').val()
+    },
+    
+    success: function(result) {
+      console.log('hi');
+      
 
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+
+      console.log(textStatus);
+      console.log(errorThrown);
+      console.log(jqXHR);
+    }
+  });
+})
+
+// List all of the employees in the selected department
 $('#department-select').on('change',function() {
 
   $.ajax({
@@ -312,6 +336,7 @@ $('#department-select').on('change',function() {
   });
 }); 
 
+// List all of the employees in the selected location
 
 $('#location-select').on('change',function() {
 
