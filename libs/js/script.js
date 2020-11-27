@@ -147,7 +147,7 @@ $(document).ready(function() {
     success: function(result) {
       
       $('#department-title').html('');
-      console.log(result['data']);
+      // console.log(result['data']);
       result['data'].forEach(employee => {
         const employeeHTML = formatEmployeeInfo(employee);
        $('#results').append(employeeHTML);
@@ -235,6 +235,8 @@ $('#insert-location-btn').on('click',function() {
     
     success: function(result) {
       console.log('hi');
+      $('#edit-location-message').html('<h4>Location succesfully added.</h4>');
+      $('#edit-location-message').addClass('success');
 
 
     },
@@ -263,11 +265,15 @@ $('#insert-employee-btn').on('click',function() {
     },
     
     success: function(result) {
-      console.log('hi');
+
+      $('#add-profile-message').html('<h4>Employee succesfully added.</h4>');
+      $('#add-profile-message').addClass('success');
 
 
     },
     error: function(jqXHR, textStatus, errorThrown) {
+      $('#add-profile-message').html("<h4>There's been an error. Please try again.</h4>");
+      $('#add-profile-message').addClass('error');
 
       console.log(textStatus);
       console.log(errorThrown);
@@ -368,3 +374,18 @@ $('#location-select').on('change',function() {
     }
   });
 }); 
+
+// Reset and remove message classes from modals
+$('#add-profile-btn').on('click', function () {
+
+  $('#new-employee-fname').val('');
+  $('#new-employee-lname').val('');
+  $('#new-employee-job').val('');
+  $('#new-employee-email').val('');
+
+  $('#add-profile-message').removeClass('success');
+  $('#add-profile-message').removeClass('error');
+
+  $('#add-profile-message').html('');
+
+})

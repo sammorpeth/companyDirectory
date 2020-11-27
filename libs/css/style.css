@@ -7,7 +7,20 @@ li {
   padding-left: 0;
 }
 
+.success,
+.error {
+  color: #ffffff;
+  padding: 1em;
+  margin: .5em
+}
 
+.error {
+  background-color: #9b111e;
+}
+
+.success {
+  background-color: #50c878;
+}
 
 
 .employee-card {

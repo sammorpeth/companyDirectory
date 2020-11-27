@@ -61,11 +61,14 @@
               <input class="form-control" id="new-dpt-name" type="text" name="department" placeholder="E.g. Logistics">
               <label for="department">Location</label>
               <select id="new-dpt-location-select"></select>
-              <button type="button" class="btn btn-primary" id="insert-dpt-btn">Submit</button>
 
               </form>
+              <div class="text-center" id="edit-location-message"></div>
+
+              <div id="department-message"></div>
           </div>
           <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id="insert-dpt-btn">Submit</button>
             
           </div>
         </div>
@@ -86,7 +89,10 @@
           <div class="modal-body">
             <label for="location">Location</label>
             <input class="form-control" id="new-location-name" type="text" name="location" placeholder="E.g. Hanoi">
+
           </div>
+          <div class="text-center" id="edit-location-message"></div>
+
           <div class="modal-footer">
             <button type="button" class="btn btn-primary" id="insert-location-btn">Submit</button>
 
@@ -117,8 +123,9 @@
               <input class="form-control" id="new-employee-email" type="email" name="new-employee-email"  required>
               <label for="new-employee-location">Department</label>
               <select class="custom-select" id="new-employee-department-select"></select>
-
             </div>
+            <div class="text-center" id="add-profile-message"></div>
+
             <div class="modal-footer">
               <button type="button" class="btn btn-primary" id="insert-employee-btn">Submit</button>
   
@@ -149,7 +156,6 @@
               <li class="nav-item">
                 
               </li>
-              <form>
                 <div class="form-group">
                   <select class="custom-select" id="department-select"></select>
                   <button type="button" class="btn  btn-primary"  id="department-btn" data-toggle="modal" data-target="#editDepartmentModal">Edit Departments</button>
@@ -161,7 +167,6 @@
                   <button class="btn btn-primary" id="name-btn">Search</button>
                   <button type="button" class="btn btn-primary"  id="add-profile-btn" data-toggle="modal" data-target="#addProfileModal">Add Employee</button>
                 </div>
-              </form>
           </nav>
 
           
