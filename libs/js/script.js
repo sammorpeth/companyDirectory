@@ -209,7 +209,8 @@ $('#insert-dpt-btn').on('click',function() {
     },
     
     success: function(result) {
-      console.log('hi');
+      $('#edit-department-message').html('<h4>Department succesfully added.</h4>');
+      $('#edit-department-message').addClass('success');
 
 
     },
@@ -237,7 +238,6 @@ $('#insert-location-btn').on('click',function() {
       console.log('hi');
       $('#edit-location-message').html('<h4>Location succesfully added.</h4>');
       $('#edit-location-message').addClass('success');
-
 
     },
     error: function(jqXHR, textStatus, errorThrown) {
@@ -389,3 +389,25 @@ $('#add-profile-btn').on('click', function () {
   $('#add-profile-message').html('');
 
 })
+
+$('#location-btn').on('click', function () {
+
+  $('#new-location-name').val('');
+
+  $('#edit-location-message').removeClass('success');
+  $('#edit-location-message').removeClass('error');
+
+  $('#edit-location-message').html('');
+
+});
+
+$('#department-btn').on('click', function () {
+
+  $('#new-dpt-name').val('');
+
+  $('#edit-department-message').removeClass('success');
+  $('#edit-department-message').removeClass('error');
+
+  $('#edit-department-message').html('');
+
+});

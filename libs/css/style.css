@@ -11,7 +11,8 @@ li {
 .error {
   color: #ffffff;
   padding: 1em;
-  margin: .5em
+  margin: .5em;
+  border-radius: 5px;
 }
 
 .error {
