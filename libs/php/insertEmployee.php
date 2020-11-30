@@ -4,9 +4,7 @@
 	// http://localhost/companydirectory/libs/php/insertDepartment.php?name=New%20Department&locationID=1
 
 	// remove next two lines for production
-	
-	ini_set('display_errors', 'On');
-	error_reporting(E_ALL);
+
 
 	$executionStartTime = microtime(true);
 
@@ -30,15 +28,20 @@
 
 		exit;
 
-	}	
+  }	
+  
+  // Sanitize inputs
+  $filteredFirstName = filter_var($_POST['firstName'], FILTER_SANITIZE_STRING);
+  $filteredLastName = filter_var($_POST['lastName'], FILTER_SANITIZE_STRING);
+  $filteredJobTitle = filter_var($_POST['jobTitle'], FILTER_SANITIZE_STRING);
+  $filteredEmail = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
 
-	// $_REQUEST used for development / debugging. Remember to change to $_POST for production
 
-	// $query = 'INSERT INTO department (name, locationID) VALUES("' . $_REQUEST['name'] . '",' . $_REQUEST["locationID"] . ')';
 	// $query = 'INSERT INTO personnel (firstName, lastName, jobTitle, email, departmentID) VALUES("Jack", "Morpeth", "Developer", "me@gmail.com", 1)';
-  $query = 'INSERT INTO personnel (firstName, lastName, jobTitle, email, departmentID) VALUES("' . $_REQUEST['firstName'] . '", "' . $_REQUEST['lastName'] . '", "'
-                                                             . $_REQUEST['jobTitle'] . '", "'. $_REQUEST['email'] . '",'. $_REQUEST['departmentID'] .')';
-	// $query = 'INSERT INTO location (name) VALUES("Bingo")';
+  $query = 'INSERT INTO personnel (firstName, lastName, jobTitle, email, departmentID) VALUES("' . $filteredFirstName . '", "' . $filteredLastName. '", "'
+                                                             . $filteredJobTitle . '", "'. $filteredEmail . '",'. $_REQUEST['departmentID'] .')';
+//  $query = 'INSERT INTO personnel (firstName, lastName, jobTitle, email, departmentID) VALUES("' . $filteredFirstName . '", "' . $_REQUEST['lastName'] . '", "'
+//  . $_REQUEST['jobTitle'] . '", "'. $_REQUEST['email'] . '",'. $_REQUEST['departmentID'] .')';
 
 	$result = $conn->query($query);
 	

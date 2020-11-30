@@ -5,9 +5,7 @@
 	// http://localhost/companydirectory/libs/php/deleteDepartmentByID.php?id= <id>
 
 	// remove next two lines for production
-	
-	ini_set('display_errors', 'On');
-	error_reporting(E_ALL);
+
 
 	$executionStartTime = microtime(true);
 
@@ -31,13 +29,19 @@
 
 		exit;
 
-	}	
+  }	
+  
+  $filteredFirstName = filter_var($_POST['firstName'], FILTER_SANITIZE_STRING);
+  $filteredLastName = filter_var($_POST['lastName'], FILTER_SANITIZE_STRING);
+  $filteredJobTitle = filter_var($_POST['jobTitle'], FILTER_SANITIZE_STRING);
+  $filteredEmail = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+
 
 	// $_REQUEST used for development / debugging. Remember to cange to $_POST for production
 
-  $query = 'UPDATE personnel SET firstName = "'. $_REQUEST['firstName'].'", lastName = "'. $_REQUEST['lastName'].
-                                              '", jobTitle = "'. $_REQUEST['jobTitle'].'", email = "'. $_REQUEST['email'].
-                                              '", departmentID = '. $_REQUEST['departmentID'].' WHERE id = ' . $_REQUEST['employeeID'];
+  $query = 'UPDATE personnel SET firstName = "'. $filteredFirstName.'", lastName = "'. $filteredLastName.
+                                              '", jobTitle = "'. $filteredJobTitle.'", email = "'. $filteredEmail.
+                                              '", departmentID = '. $_POST['departmentID'].' WHERE id = ' . $_POST['employeeID'];
 
 	$result = $conn->query($query);
 	

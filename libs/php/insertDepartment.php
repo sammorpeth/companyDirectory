@@ -31,10 +31,10 @@
 		exit;
 
 	}	
+  // Sanitize inputs
+  $filteredDptName = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
 
-	// $_REQUEST used for development / debugging. Remember to change to $_POST for production
-
-	$query = 'INSERT INTO department (name, locationID) VALUES("' . $_REQUEST['name'] . '",' . $_REQUEST["locationID"] . ')';
+	$query = 'INSERT INTO department (name, locationID) VALUES("' . $filteredDptName . '",' . $_POST["locationID"] . ')';
 	// $query = 'INSERT INTO department (name, locationID) VALUES("Logistics", 1)';
 
 	$result = $conn->query($query);

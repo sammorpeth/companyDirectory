@@ -5,9 +5,7 @@
 
 	// remove next two lines for production
 	
-	ini_set('display_errors', 'On');
-	error_reporting(E_ALL);
-
+	
 	$executionStartTime = microtime(true);
 
 	include("config.php");
@@ -30,12 +28,15 @@
 
 		exit;
 
-	}	
+  }	
+  
+  $filteredName = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
+
 
 	// $_REQUEST used for development / debugging. Remember to change to $_POST for production
 
 	// $query = 'INSERT INTO department (name, locationID) VALUES("' . $_REQUEST['name'] . '",' . $_REQUEST["locationID"] . ')';
-	$query = 'INSERT INTO location (name) VALUES("' . $_REQUEST['name'] . '")';
+	$query = 'INSERT INTO location (name) VALUES("' . $filteredName . '")';
 	// $query = 'INSERT INTO location (name) VALUES("Bingo")';
 
 	$result = $conn->query($query);

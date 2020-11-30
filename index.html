@@ -36,6 +36,8 @@
           <div class="modal-body" id="editProfileBody">
            
           </div>
+          <div class="text-center" id="edit-profile-message"></div>
+          
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             <button type="button" class="btn btn-primary" id="update-current-employee-btn">Update</button>
@@ -137,40 +139,37 @@
     <!-- /. END MODALS -->
 
 
-    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Company Directory</a>
-      <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
-      <ul class="navbar-nav px-3">
-        <li class="nav-item text-nowrap">
-          <a class="nav-link" href="#">Sign out</a>
-        </li>
-      </ul>
-    </nav>
+   
 
     <div class="container-fluid">
       <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-          <div class="sidebar-sticky">
-            <ul class="nav flex-column">
-              <li class="nav-item">
-                
-              </li>
-                <div class="form-group">
-                  <select class="custom-select" id="department-select"></select>
-                  <button type="button" class="btn  btn-primary"  id="department-btn" data-toggle="modal" data-target="#editDepartmentModal">Edit Departments</button>
+       
+          <nav class="col-md-3 col-lg-2 col-sm-2 d-md-block bg-light sidebar" >
+            <div id="sidebar">
+            <h3>Management</h3>
+            <form>
+              <div class="form-group">
+                <label for="locations-select">Locations</label>
+                <select class="form-control" name="locations-select" id="location-select"></select>
+                <button class="btn-primary btn col-sm-12"  type="button" id="location-btn" data-toggle="modal" data-target="#editLocationModal">Edit Locations</button>
 
-                  <select class="custom-select" id="location-select"></select>
-                  <button type="button" class="btn btn-primary"  id="location-btn" data-toggle="modal" data-target="#editLocationModal">Edit Locations</button>
+                <label for="departments-select">Departments</label>
+                <select class="form-control" name="departments-select" id="department-select"></select>
+                <button  class="btn-primary btn col-sm-12" type="button" id="department-btn" data-toggle="modal" data-target="#editDepartmentModal">Edit Departments</button>
 
-                  <input class="form-control"  id="employee-name-search" type="text" name="employee-first-name">
-                  <button class="btn btn-primary" id="name-btn">Search</button>
-                  <button type="button" class="btn btn-primary"  id="add-profile-btn" data-toggle="modal" data-target="#addProfileModal">Add Employee</button>
-                </div>
+                <label for="find-employee">Find an employee</label>
+                <input class="form-control" id="employee-name-search" type="text" name="find-employee" value="" placeholder="Enter name...">
+                <button  class="btn-primary btn col-sm-12" id="name-btn" type="button" >Search</button>
+                <button  class="btn-primary btn col-sm-12" type="button" id="add-profile-btn" data-toggle="modal" data-target="#addProfileModal">Add Employee</button>
+  
+  
+            </form>
+            </div>
           </nav>
-
+  
           
 
-        <main role="main" class="col">
+        <main role="main" class="col-md-8 col-lg-10 ml-sm-auto pt-3 px-4">
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
             <h1 class="h2">Dashboard</h1>
             
@@ -181,7 +180,7 @@
           <div class="col-12 col-md-8" id="results-container">
             <div class="row shadow p-3 mb-5 bg-white rounded">
               <div class="col shadow-sm p-3 mb-3 bg-white rounded">
-                <div class="row" id="results">
+                <div class="row m-auto" id="results">
                   
                 
                 </div>

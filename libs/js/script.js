@@ -53,7 +53,7 @@ const getInfoById = (id) => {
 // Format the HTML for the profile editing modal 
 const formatEmployeeInfo = (employee) => {
 
-  let employeeHTML = $(`<div class="col-12 col-lg-6 shadow-sm p-3 mb-3 rounded employee-card">
+  let employeeHTML = $(`<div class="col-lg-5 shadow-sm p-3 mb-3 mr-2 rounded employee-card">
                       <h5 >${employee.firstName} ${employee.lastName}</h5>
 
                       <ul>
@@ -298,7 +298,11 @@ $('#update-current-employee-btn').on('click', function() {
     
     success: function(result) {
       console.log('hi');
-      
+   
+      $('#edit-profile-message').html('<h4>Profile succesfully changed.</h4>');
+      $('#edit-profile-message').addClass('success');
+
+
 
     },
     error: function(jqXHR, textStatus, errorThrown) {

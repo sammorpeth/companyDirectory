@@ -25,8 +25,14 @@ li {
 
 
 .employee-card {
-  color: #fff;
-  background: #0F2027;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: #000;
+  background-color: #d3d3d3;
+}
+
+nav .btn-primary {
+  margin-top: .5em;
+  margin-bottom: .5em;
+}
+
+#results {
 }
