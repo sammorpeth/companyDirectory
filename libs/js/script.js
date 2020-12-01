@@ -340,7 +340,7 @@ $('#edit-department-btn').on('click', function() {
 
     },
     error: function(jqXHR, textStatus, errorThrown) {
-
+console.log('hi')
       console.log(textStatus);
       console.log(errorThrown);
       console.log(jqXHR);
