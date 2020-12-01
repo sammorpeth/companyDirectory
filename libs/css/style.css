@@ -34,5 +34,13 @@ nav .btn-primary {
   margin-bottom: .5em;
 }
 
-#results {
+#editLocationModalBody > div > input,
+#editLocationModalBody > div > select,
+#editLocationModalBody > div > button,
+#editDepartmentModalBody > div > select,
+#editDepartmentModalBody > div > input,
+#editDepartmentModalBody > div > button
+{
+  margin-top: .25em;
+  margin-bottom: .25em;
 }

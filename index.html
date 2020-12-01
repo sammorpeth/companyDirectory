@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
 
-    <title>Dashboard Template for Bootstrap</title>
+    <title>Company Directory</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/dashboard/">
 
@@ -52,26 +52,37 @@
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="editDepartmentTitle">Add a new department</h5>
+            <h5 class="modal-title" id="editDepartmentTitle">Edit Departments</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
-            <form action="" method="post">
-              <label for="department">Department</label>
-              <input class="form-control" id="new-dpt-name" type="text" name="department" placeholder="E.g. Logistics">
-              <label for="department">Location</label>
-              <select id="new-dpt-location-select"></select>
+          <div class="modal-body" id="editDepartmentModalBody">
+            <div class="border-bottom mb-4">
+              <h6>Add a department</h6>
 
-              </form>
-              <div class="text-center" id="edit-department-message"></div>
+                <label for="department">Department Name</label>
+                <input class="form-control" id="new-dpt-name" type="text" name="department" placeholder="E.g. Logistics">
+                <label for="department">Location</label>
+                <select class="form-control" id="new-dpt-location-select"></select>
+                <button type="button" class="btn btn-primary mb-2" id="insert-location-btn">Submit</button>
+
+            </div>
+
+            <div>
+              <h6>Edit a department</h6>
+              <label for="edit-location-select">Department Name</label>
+              <select class="form-control" id="edit-department-select" name="edit-department-select"></select>
+
+              <input class="form-control" id="edit-department-name-input" type="text" name="edit-department-input" placeholder="Change name here...">
+              <button type="button" class="btn btn-primary" id="edit-department-btn">Update</button>
+              <button type="button" class="btn btn-primary" id="delete-department-btn">Delete</button>
+            </div>
+
+            <div class="text-center" id="edit-department-message"></div>
 
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary" id="insert-dpt-btn">Submit</button>
-            
-          </div>
+      
         </div>
       </div>
     </div>
@@ -82,22 +93,31 @@
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="editLocationsTitle">Add a new location</h5>
+            <h5 class="modal-title" id="editLocationsTitle">Edit Locations</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
-            <label for="location">Location</label>
-            <input class="form-control" id="new-location-name" type="text" name="location" placeholder="E.g. Hanoi">
+          <div class="modal-body" id="editLocationModalBody">
+            <div class="border-bottom mb-4">
+              <label for="location">Add Location</label>
+              <input class="form-control" id="new-location-name" type="text" name="location" placeholder="E.g. Hanoi">
+              <button type="button" class="btn btn-primary d-block mt-2" id="insert-location-btn">Submit</button>
+            </div>
+
+            <div>
+              <label for="edit-location-select">Edit Location</label>
+              <select class="form-control" id="edit-location-select" name="edit-location-select"></select>
+
+              <input class="form-control" id="edit-location-name-input" type="text" name="location" placeholder="Change name here...">
+              <button type="button" class="btn btn-primary" id="edit-location-btn">Update</button>
+              <button type="button" class="btn btn-primary" id="delete-location-btn">Delete</button>
+            </div>
 
           </div>
           <div class="text-center" id="edit-location-message"></div>
 
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary" id="insert-location-btn">Submit</button>
-
-          </div>
+         
         </div>
       </div>
     </div>

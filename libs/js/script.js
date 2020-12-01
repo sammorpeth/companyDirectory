@@ -126,6 +126,33 @@ const appendLocationsToSelects = (selectName) => {
     }
   });
 }
+const getAllEmployees = () => {
+  $.ajax({
+    url: "libs/php/getAll.php",
+    type: 'POST',
+    dataType: 'json',
+    
+    success: function(result) {
+      // Reset results HTML so the page updates. 
+      $('#results').html('');
+      $('#department-title').html('');
+      // console.log(result['data']);
+      result['data'].forEach(employee => {
+        const employeeHTML = formatEmployeeInfo(employee);
+       $('#results').append(employeeHTML);
+      })
+  
+  
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+  
+      console.log(textStatus);
+      console.log(errorThrown);
+      console.log(jqXHR);
+    }
+  });
+  
+}
 
 
 
@@ -135,33 +162,13 @@ $(document).ready(function() {
   // Append options
   appendDepartmentsToSelects('#department-select');
   appendDepartmentsToSelects('#new-employee-department-select');
+  appendDepartmentsToSelects('#edit-department-select');
   appendLocationsToSelects('#location-select');
   appendLocationsToSelects('#new-dpt-location-select');
+  appendLocationsToSelects('#edit-location-select');
 
   // Append all the employees to the page on load
-  $.ajax({
-    url: "libs/php/getAll.php",
-    type: 'POST',
-    dataType: 'json',
-    
-    success: function(result) {
-      
-      $('#department-title').html('');
-      // console.log(result['data']);
-      result['data'].forEach(employee => {
-        const employeeHTML = formatEmployeeInfo(employee);
-       $('#results').append(employeeHTML);
-      })
-
-
-    },
-    error: function(jqXHR, textStatus, errorThrown) {
-
-      console.log(textStatus);
-      console.log(errorThrown);
-      console.log(jqXHR);
-    }
-  });
+  getAllEmployees();
 }); 
 
 // Search functionality for user's first name
@@ -297,11 +304,9 @@ $('#update-current-employee-btn').on('click', function() {
     },
     
     success: function(result) {
-      console.log('hi');
    
       $('#edit-profile-message').html('<h4>Profile succesfully changed.</h4>');
       $('#edit-profile-message').addClass('success');
-
 
 
     },
@@ -312,7 +317,63 @@ $('#update-current-employee-btn').on('click', function() {
       console.log(jqXHR);
     }
   });
-})
+  getAllEmployees();
+
+});
+
+$('#edit-department-btn').on('click', function() {
+  $.ajax({
+    url: "libs/php/updateDepartment.php",
+    type: 'POST',
+    dataType: 'json',
+    data: {
+      dptName : $('#edit-department-name-input').val(),
+      dptID : $('#edit-department-select').val()
+      
+    },
+    
+    success: function(result) {
+   
+      $('#edit-department-message').html('<h4>Department name succesfully changed.</h4>');
+      $('#edit-department-message').addClass('success');
+
+
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+
+      console.log(textStatus);
+      console.log(errorThrown);
+      console.log(jqXHR);
+    }
+  });
+});
+
+$('#edit-location-btn').on('click', function() {
+  $.ajax({
+    url: "libs/php/updateLocation.php",
+    type: 'POST',
+    dataType: 'json',
+    data: {
+      locationName : $('#edit-location-name-input').val(),
+      locationID : $('#edit-location-select').val()
+      
+    },
+    
+    success: function(result) {
+   
+      $('#edit-location-message').html('<h4>Location name succesfully changed.</h4>');
+      $('#edit-location-message').addClass('success');
+
+
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+
+      console.log(textStatus);
+      console.log(errorThrown);
+      console.log(jqXHR);
+    }
+  });
+});
 
 // List all of the employees in the selected department
 $('#department-select').on('change',function() {
