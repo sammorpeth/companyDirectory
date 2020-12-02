@@ -36,7 +36,7 @@
             FROM personnel p 
             LEFT JOIN department d ON (d.id = p.departmentID)
             LEFT JOIN location l ON (l.id = d.locationID)
-            WHERE d.id = ' . $_POST['departmentID'] .'
+            WHERE l.id = ' . $_POST['locationID'] .'
             ORDER BY p.lastName, p.firstName, d.name, l.name';
 
   
@@ -44,7 +44,7 @@
   //           FROM personnel p 
   //           LEFT JOIN department d ON (d.id = p.departmentID)
   //           LEFT JOIN location l ON (l.id = d.locationID)
-  //           WHERE d.id = 6
+  //           WHERE l.id = 7
   //           ORDER BY p.lastName, p.firstName, d.name, l.name';
 
 	$result = $conn->query($query);
@@ -79,11 +79,11 @@
 	$output['data'] = $data;
   
   $entries = count($data);
-  // echo $entries;
+  echo $entries;
 
   if ($entries == 0) {
-    $query = 'DELETE FROM department WHERE id = ' . $_POST['departmentID'];
-    // $query = 'DELETE FROM department WHERE id = 16';
+    $query = 'DELETE FROM location WHERE id = ' . $_POST['locationID'];
+    // $query = 'DELETE FROM location WHERE id = 7';
     $result = $conn->query($query);
   } 
   mysqli_close($conn);

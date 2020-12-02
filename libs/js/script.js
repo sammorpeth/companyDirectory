@@ -343,7 +343,6 @@ $('#edit-department-btn').on('click', function() {
 
     },
     error: function(jqXHR, textStatus, errorThrown) {
-console.log('hi')
       console.log(textStatus);
       console.log(errorThrown);
       console.log(jqXHR);
@@ -364,7 +363,33 @@ $('#delete-department-btn').on('click', function() {
     },
     
     success: function(result) {
-      console.log('hi')
+
+
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+console.log('hi')
+      console.log(textStatus);
+      console.log(errorThrown);
+      console.log(jqXHR);
+    }
+  });
+});
+
+// Delete locations
+$('#delete-location-btn').on('click', function() {
+  $.ajax({
+    url: "libs/php/deleteLocation.php",
+    type: 'POST',
+    dataType: 'json',
+    data: {
+     
+      locationID : $('#edit-location-select').val()
+      
+    },
+    
+    success: function(result) {
+      $('#edit-location-message').html('<h4>Location deleted successfully.</h4>');
+      $('#edit-location-message').addClass('success');
 
 
     },
