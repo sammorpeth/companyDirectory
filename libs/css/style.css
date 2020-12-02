@@ -7,6 +7,15 @@ li {
   padding-left: 0;
 }
 
+#header {
+  position: fixed;
+  top: 0;
+  left: 180;
+  z-index: 1;
+  background-color: #fff;
+  width: 100%;
+}
+
 .success,
 .error {
   color: #ffffff;
@@ -44,3 +53,10 @@ nav .btn-primary {
   margin-top: .25em;
   margin-bottom: .25em;
 }
+
+@media (max-width: 425px) {
+  #header {
+    left: 0;
+  }
+}
+

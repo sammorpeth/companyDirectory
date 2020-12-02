@@ -35,7 +35,7 @@
   $filteredDptName = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
 
 	$query = 'INSERT INTO department (name, locationID) VALUES("' . $filteredDptName . '",' . $_POST["locationID"] . ')';
-	// $query = 'INSERT INTO department (name, locationID) VALUES("Logistics", 1)';
+	// $query = 'INSERT INTO department (name, locationID) VALUES("Crocodile Dancing", 1)';
 
 	$result = $conn->query($query);
 	

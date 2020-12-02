@@ -203,7 +203,7 @@ $('#name-btn').on('click',function() {
 }); 
 
 // Insert a new department through the edit departments modal
-$('#insert-dpt-btn').on('click',function() {
+$('#insert-department-btn').on('click',function() {
 
   $.ajax({
     url: "libs/php/insertDepartment.php",
@@ -288,7 +288,9 @@ $('#insert-employee-btn').on('click',function() {
     }
   });
 }); 
+// ===== EDIT/DELETE entries ====== //
 
+// Update current employees
 $('#update-current-employee-btn').on('click', function() {
   $.ajax({
     url: "libs/php/updateCurrentEmployee.php",
@@ -321,6 +323,7 @@ $('#update-current-employee-btn').on('click', function() {
 
 });
 
+// Edit departments
 $('#edit-department-btn').on('click', function() {
   $.ajax({
     url: "libs/php/updateDepartment.php",
@@ -336,6 +339,32 @@ $('#edit-department-btn').on('click', function() {
    
       $('#edit-department-message').html('<h4>Department name succesfully changed.</h4>');
       $('#edit-department-message').addClass('success');
+
+
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+console.log('hi')
+      console.log(textStatus);
+      console.log(errorThrown);
+      console.log(jqXHR);
+    }
+  });
+});
+
+// Delete departments
+$('#delete-department-btn').on('click', function() {
+  $.ajax({
+    url: "libs/php/deleteDepartment.php",
+    type: 'POST',
+    dataType: 'json',
+    data: {
+     
+      departmentID : $('#edit-department-select').val()
+      
+    },
+    
+    success: function(result) {
+      console.log('hi')
 
 
     },
