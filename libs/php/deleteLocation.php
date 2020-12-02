@@ -79,7 +79,7 @@
 	$output['data'] = $data;
   
   $entries = count($data);
-  echo $entries;
+  // echo $entries;
 
   if ($entries == 0) {
     $query = 'DELETE FROM location WHERE id = ' . $_POST['locationID'];

@@ -202,6 +202,9 @@ $('#name-btn').on('click',function() {
   });
 }); 
 
+
+
+
 // Insert a new department through the edit departments modal
 $('#insert-department-btn').on('click',function() {
 
@@ -352,6 +355,8 @@ $('#edit-department-btn').on('click', function() {
 
 // Delete departments
 $('#delete-department-btn').on('click', function() {
+  $('#edit-department-message').removeClass('success');
+  $('#edit-department-message').removeClass('error');
   $.ajax({
     url: "libs/php/deleteDepartment.php",
     type: 'POST',
@@ -363,7 +368,13 @@ $('#delete-department-btn').on('click', function() {
     },
     
     success: function(result) {
-
+      if (result['data'].length !== 0) {
+        $('#edit-department-message').html(`<h4>You can only delete departments which don't have any employees currently assigned to them.</h4>`);
+        $('#edit-department-message').addClass('error');
+      } else {
+        $('#edit-department-message').html(`<h4>Department deleted successfully.</h4>`);
+        $('#edit-department-message').addClass('success');
+      }
 
     },
     error: function(jqXHR, textStatus, errorThrown) {
@@ -377,6 +388,8 @@ console.log('hi')
 
 // Delete locations
 $('#delete-location-btn').on('click', function() {
+  $('#edit-location-message').removeClass('success');
+  $('#edit-location-message').removeClass('error');
   $.ajax({
     url: "libs/php/deleteLocation.php",
     type: 'POST',
@@ -388,13 +401,18 @@ $('#delete-location-btn').on('click', function() {
     },
     
     success: function(result) {
-      $('#edit-location-message').html('<h4>Location deleted successfully.</h4>');
-      $('#edit-location-message').addClass('success');
-
+      if (result['data'].length !== 0) {
+        $('#edit-location-message').html(`<h4>You can only delete locations which don't have any employees currently assigned to them.</h4>`);
+        $('#edit-location-message').addClass('error');
+      } else {
+        $('#edit-location-message').html(`<h4>Location deleted successfully.</h4>`);
+        $('#edit-location-message').addClass('success');
+      }
+ 
+      
 
     },
     error: function(jqXHR, textStatus, errorThrown) {
-console.log('hi')
       console.log(textStatus);
       console.log(errorThrown);
       console.log(jqXHR);

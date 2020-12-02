@@ -170,11 +170,15 @@
             <form>
               <div class="form-group">
                 <label for="locations-select">Locations</label>
-                <select class="form-control" name="locations-select" id="location-select"></select>
+                <select class="form-control" name="locations-select" id="location-select">
+                  <option value="all">All</option>
+                </select>
                 <button class="btn-primary btn col-sm-12"  type="button" id="location-btn" data-toggle="modal" data-target="#editLocationModal">Edit Locations</button>
 
                 <label for="departments-select">Departments</label>
-                <select class="form-control" name="departments-select" id="department-select"></select>
+                <select class="form-control" name="departments-select" id="department-select">
+                  <option>All</option>
+                </select>
                 <button  class="btn-primary btn col-sm-12" type="button" id="department-btn" data-toggle="modal" data-target="#editDepartmentModal">Edit Departments</button>
 
                 <label for="find-employee">Find an employee</label>
