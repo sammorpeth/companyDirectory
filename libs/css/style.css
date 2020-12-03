@@ -16,6 +16,14 @@ li {
   width: 100%;
 }
 
+#mobile-menu-btn {
+  background-color: #007bff;
+  border: 1px solid #000;
+  border-radius: 5px;
+  margin-right: .5em;
+  margin-top: .5em;
+}
+
 .success,
 .error {
   color: #ffffff;
@@ -38,18 +46,16 @@ li {
   background-color: #d3d3d3;
 }
 
-nav .btn-primary {
+nav .btn-primary, 
+#mobileMenuBody .btn-primary {
   margin-top: .5em;
   margin-bottom: .5em;
 }
 
-#editLocationModalBody > div > input,
-#editLocationModalBody > div > select,
-#editLocationModalBody > div > button,
-#editDepartmentModalBody > div > select,
-#editDepartmentModalBody > div > input,
-#editDepartmentModalBody > div > button
-{
+
+input,
+select,
+button {
   margin-top: .25em;
   margin-bottom: .25em;
 }

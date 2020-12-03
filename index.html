@@ -22,7 +22,77 @@
 
   <body>
 
-  <!-- MODALS -->
+
+
+
+   
+
+    <div class="container-fluid ">
+      <div class="row">
+
+      
+
+          <nav class="col-md-3 col-lg-2 col-sm-2 d-none d-md-block bg-light sidebar fixed-top" >
+            <div id="sidebar">
+            <h3>Management</h3>
+            <form>
+              <div class="form-group">
+                <label for="location-select">Locations</label>
+                <select class="form-control" name="location-select" id="location-select">
+                  <option value="all">All</option>
+                </select>
+                <button class="btn-primary btn col-sm-12"  type="button" id="location-btn" data-toggle="modal" data-target="#editLocationModal">Edit Locations</button>
+
+                <label for="departments-select">Departments</label>
+                <select class="form-control" name="departments-select" id="department-select">
+                  <option value="all">All</option>
+                </select>
+                <button  class="btn-primary btn col-sm-12" type="button" id="department-btn" data-toggle="modal" data-target="#editDepartmentModal">Edit Departments</button>
+
+                <label for="find-employee">Find an employee</label>
+                <input class="form-control" id="employee-name-search" type="text" name="find-employee" value="" placeholder="Enter first name...">
+                <button  class="btn-primary btn col-sm-12" id="name-btn" type="button" >Search</button>
+                <button  class="btn-primary btn col-sm-12" type="button" id="add-profile-btn" data-toggle="modal" data-target="#addProfileModal">Add Employee</button>
+  
+  
+            </form>
+            </div>
+          </nav> 
+  
+          
+
+        <main role="main" class="col-md-8 col-lg-10 ml-sm-auto pt-3 px-4">
+          <div class="d-flex flex-wrap flex-md-nowrap justify-content-between align-items-center pb-2 mb-3 ml-1 border-bottom" id="header">
+            <h1 class="h2">Dashboard </h1>
+            <button class="d-sm-block d-md-none" id="mobile-menu-btn" data-toggle="modal" data-target="#mobileMenuModal">
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-menu-2" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <line x1="4" y1="6" x2="20" y2="6" />
+                <line x1="4" y1="12" x2="20" y2="12" />
+                <line x1="4" y1="18" x2="20" y2="18" />
+              </svg>
+            </button>
+          </div>
+         
+          <h1 class="h2" id="results-title"></h1>
+          
+          <div class="col-12 col-md-8" id="results-container">
+            <div class="row shadow p-3 mb-5 bg-white rounded">
+              <div class="col shadow-sm p-3 mb-3 bg-white rounded">
+                <div class="row mt-3" id="results">
+                  
+                
+                </div>
+              </div>
+            </div>
+          </div>
+            
+          </div>
+
+        </main>
+      </div>
+
+        <!-- MODALS -->
     <!-- Profile Edit Modal -->
     <div class="modal fade" id="editProfileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
@@ -156,66 +226,47 @@
       </div>
       <!-- /. End Add Profile Modal -->
 
-    <!-- /. END MODALS -->
-
-
-   
-
-    <div class="container-fluid ">
-      <div class="row">
-       
-          <nav class="col-md-3 col-lg-2 col-sm-2 d-none d-md-block bg-light sidebar fixed-top" >
-            <div id="sidebar">
-            <h3>Management</h3>
+       <!-- Mobile Menu Modal -->
+    <div class="modal fade" id="mobileMenuModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editProfileTitle">Menu</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" id="mobileMenuBody">
             <form>
               <div class="form-group">
-                <label for="locations-select">Locations</label>
-                <select class="form-control" name="locations-select" id="location-select">
+                <label for="mobile-location-select">Locations</label>
+                <select class="form-control" name="mobile-location-select" id="mobile-location-select">
                   <option value="all">All</option>
                 </select>
-                <button class="btn-primary btn col-sm-12"  type="button" id="location-btn" data-toggle="modal" data-target="#editLocationModal">Edit Locations</button>
+                <button class="btn-primary btn col-sm-12"  type="button" id="mobile-location-btn" data-toggle="modal" data-target="#editLocationModal" data-dismiss="modal">Edit Locations</button>
 
-                <label for="departments-select">Departments</label>
-                <select class="form-control" name="departments-select" id="department-select">
-                  <option>All</option>
+                <label for="mobile-department-select">Departments</label>
+                <select class="form-control" name="mobile-department-select" id="mobile-department-select">
+                  <option value="all">All</option>
                 </select>
-                <button  class="btn-primary btn col-sm-12" type="button" id="department-btn" data-toggle="modal" data-target="#editDepartmentModal">Edit Departments</button>
-
-                <label for="find-employee">Find an employee</label>
-                <input class="form-control" id="employee-name-search" type="text" name="find-employee" value="" placeholder="Enter name...">
-                <button  class="btn-primary btn col-sm-12" id="name-btn" type="button" >Search</button>
-                <button  class="btn-primary btn col-sm-12" type="button" id="add-profile-btn" data-toggle="modal" data-target="#addProfileModal">Add Employee</button>
-  
-  
-            </form>
-            </div>
-          </nav>
-  
-          
-
-        <main role="main" class="col-md-8 col-lg-10 ml-sm-auto pt-3 px-4">
-          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom" id="header">
-            <h1 class="h2">Dashboard</h1>
-            
-          </div>
-         
-          <h1 class="h2" id="results-title"></h1>
-          
-          <div class="col-12 col-md-8" id="results-container">
-            <div class="row shadow p-3 mb-5 bg-white rounded">
-              <div class="col shadow-sm p-3 mb-3 bg-white rounded">
-                <div class="row m-auto " id="results">
-                  
+                <button class="btn-primary btn col-sm-12" type="button" id="mobile-department-btn" data-toggle="modal" data-target="#editDepartmentModal" data-dismiss="modal">Edit Departments</button>
                 
-                </div>
+                <label for="mobile-find-employee">Find an employee</label>
+                <input class="form-control" id="mobile-employee-name-search" type="text" name="find-employee" value="" placeholder="Enter name...">
+                <button  class="btn-primary btn col-sm-12" id="mobile-name-btn" type="button" >Search</button>
+                <button  class="btn-primary btn col-sm-12" type="button" id="add-profile-btn" data-toggle="modal" data-dismiss="modal" data-target="#addProfileModal">Add Employee</button>
               </div>
-            </div>
+            </form>
           </div>
-            
-          </div>
-
-        </main>
+          <div class="text-center" id="edit-profile-message"></div>
+          
+      
+        </div>
       </div>
+    </div>
+    <!-- /. End Profile Edit Modal -->
+
+    <!-- /. END MODALS -->
     </div>
 
     <!-- Bootstrap core JavaScript

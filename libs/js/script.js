@@ -53,15 +53,14 @@ const getInfoById = (id) => {
 // Format the HTML for the profile editing modal 
 const formatEmployeeInfo = (employee) => {
 
-  let employeeHTML = $(`<div class="col-lg-5 shadow-sm p-3 mb-3 mr-2 rounded employee-card">
+  let employeeHTML = $(`<div class="col-lg-5 col-sm-12 shadow-sm p-3 mb-3 mr-2 rounded employee-card ">
                       <h5 >${employee.firstName} ${employee.lastName}</h5>
 
-                      <ul>
+                      <ul class="d-none d-md-block">
                         <li>Email: ${employee.email}</li>
-                        <li>Job Title: ${employee.jobTitle}</li>
+                        <li >Job Title: ${employee.jobTitle}</li>
                         <li>Department: ${employee.department}</li>
                         <li>Location: ${employee.location}</li>
-                        
                       </ul>
                     </div>
                     `);
@@ -151,36 +150,15 @@ const getAllEmployees = () => {
       console.log(jqXHR);
     }
   });
-  
 }
 
-
-
-// Initiates the page with select options etc. 
-$(document).ready(function() {
-  
-  // Append options
-  appendDepartmentsToSelects('#department-select');
-  appendDepartmentsToSelects('#new-employee-department-select');
-  appendDepartmentsToSelects('#edit-department-select');
-  appendLocationsToSelects('#location-select');
-  appendLocationsToSelects('#new-dpt-location-select');
-  appendLocationsToSelects('#edit-location-select');
-
-  // Append all the employees to the page on load
-  getAllEmployees();
-}); 
-
-// Search functionality for user's first name
-$('#name-btn').on('click',function() {
-  console.log('hi');
-
+const nameSearch = (elementID) => {
   $.ajax({
     url: "libs/php/getEmployeeByName.php",
     type: 'POST',
     dataType: 'json',
     data: {
-      firstName: $('#employee-name-search').val()
+      firstName: $(`#${elementID}`).val()
     },
     
     success: function(result) {
@@ -200,9 +178,125 @@ $('#name-btn').on('click',function() {
       console.log(jqXHR);
     }
   });
+}
+const getAllByDepartment = (elementID) => {
+  $.ajax({
+    url: "libs/php/getAllByDepartment.php",
+    type: 'POST',
+    dataType: 'json',
+    data: {
+      departmentID: $(`#${elementID}`).val()
+    },
+    
+    success: function(result) {
+      $('#results').html('');
+      $('#department-title').html('');
+      console.log(result['data']);
+      result['data'].forEach(employee => {
+        const employeeHTML = formatEmployeeInfo(employee);
+       $('#results').append(employeeHTML);
+      })
+      $('#results-title').html($('#department-select option:selected').text())
+  
+  
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+  
+      console.log(textStatus);
+      console.log(errorThrown);
+      console.log(jqXHR);
+    }
+  });
+}
+
+const getAllByLocation = (elementID) => {
+  $.ajax({
+    url: "libs/php/getAllByLocation.php",
+    type: 'POST',
+    dataType: 'json',
+    data: {
+      location: $(`#${elementID}`).val()
+    },
+    
+    success: function(result) {
+      $('#results').html('');
+      $('#department-title').html('');
+      console.log(result['data']);
+      result['data'].forEach(employee => {
+        const employeeHTML = formatEmployeeInfo(employee);
+       $('#results').append(employeeHTML);
+      })
+      $('#results-title').html($('#location-select option:selected').text());
+  
+  
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+  
+      console.log(textStatus);
+      console.log(errorThrown);
+      console.log(jqXHR);
+    }
+  });
+  
+}
+
+
+// Initiates the page with select options etc. 
+$(document).ready(function() {
+  
+  // Append options
+  appendDepartmentsToSelects('#department-select');
+  appendDepartmentsToSelects('#mobile-department-select');
+  appendDepartmentsToSelects('#new-employee-department-select');
+  appendDepartmentsToSelects('#edit-department-select');
+
+  appendLocationsToSelects('#location-select');
+  appendLocationsToSelects('#mobile-location-select');
+  appendLocationsToSelects('#new-dpt-location-select');
+  appendLocationsToSelects('#edit-location-select');
+
+  // Append all the employees to the page on load
+  getAllEmployees();
 }); 
 
+// Search functionality for user's first name
+$('#name-btn').on('click',function() {
 
+  nameSearch('employee-name-search')
+
+}); 
+
+// Search functionality for user's first name - MOBILE
+$('#mobile-name-btn').on('click',function() {
+
+  nameSearch('mobile-employee-name-search')
+
+}); 
+
+// Get all employees when 'all' is selected.
+$('#location-select').on('change', function() {
+  if(this.value === 'all') {
+    getAllEmployees();
+  }
+})
+
+$('#department-select').on('change', function() {
+  if(this.value === 'all') {
+    getAllEmployees();
+  }
+})
+
+$('#mobile-location-select').on('change', function() {
+  if(this.value === 'all') {
+    getAllEmployees();
+  }
+})
+
+$('#mobile-department-select').on('change', function() {
+  if(this.value === 'all') {
+    getAllEmployees();
+  }
+})
 
 
 // Insert a new department through the edit departments modal
@@ -378,7 +472,6 @@ $('#delete-department-btn').on('click', function() {
 
     },
     error: function(jqXHR, textStatus, errorThrown) {
-console.log('hi')
       console.log(textStatus);
       console.log(errorThrown);
       console.log(jqXHR);
@@ -450,67 +543,30 @@ $('#edit-location-btn').on('click', function() {
 // List all of the employees in the selected department
 $('#department-select').on('change',function() {
 
-  $.ajax({
-    url: "libs/php/getAllByDepartment.php",
-    type: 'POST',
-    dataType: 'json',
-    data: {
-      departmentID: $('#department-select').val()
-    },
-    
-    success: function(result) {
-      $('#results').html('');
-      $('#department-title').html('');
-      console.log(result['data']);
-      result['data'].forEach(employee => {
-        const employeeHTML = formatEmployeeInfo(employee);
-       $('#results').append(employeeHTML);
-      })
-      $('#results-title').html($('#department-select option:selected').text())
+  getAllByDepartment('department-select');
+
+}); 
 
 
-    },
-    error: function(jqXHR, textStatus, errorThrown) {
+// List all of the employees in the selected department - MOBILE
+$('#mobile-department-select').on('change',function() {
 
-      console.log(textStatus);
-      console.log(errorThrown);
-      console.log(jqXHR);
-    }
-  });
+  getAllByDepartment('mobile-department-select');
+  
 }); 
 
 // List all of the employees in the selected location
-
 $('#location-select').on('change',function() {
 
-  $.ajax({
-    url: "libs/php/getAllByLocation.php",
-    type: 'POST',
-    dataType: 'json',
-    data: {
-      location: $('#location-select').val()
-    },
-    
-    success: function(result) {
-      $('#results').html('');
-      $('#department-title').html('');
-      console.log(result['data']);
-      result['data'].forEach(employee => {
-        const employeeHTML = formatEmployeeInfo(employee);
-       $('#results').append(employeeHTML);
-      })
-      $('#results-title').html($('#location-select option:selected').text());
-
-
-    },
-    error: function(jqXHR, textStatus, errorThrown) {
-
-      console.log(textStatus);
-      console.log(errorThrown);
-      console.log(jqXHR);
-    }
-  });
+ getAllByLocation('location-select');
 }); 
+
+// List all of the employees in the selected location
+$('#mobile-location-select').on('change',function() {
+
+  getAllByLocation('mobile-location-select');
+}); 
+
 
 // Reset and remove message classes from modals
 $('#add-profile-btn').on('click', function () {
