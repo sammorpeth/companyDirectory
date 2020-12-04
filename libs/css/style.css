@@ -7,10 +7,13 @@ li {
   padding-left: 0;
 }
 
+nav {
+  height: 100%;
+}
+
 #header {
   position: fixed;
   top: 0;
-  left: 180;
   z-index: 1;
   background-color: #fff;
   width: 100%;
@@ -23,6 +26,13 @@ li {
   margin-right: .5em;
   margin-top: .5em;
 }
+
+
+#results-container {
+  margin-top: 3em;
+  width: 100%;
+}
+
 
 .success,
 .error {
@@ -51,6 +61,12 @@ nav .btn-primary,
   margin-top: .5em;
   margin-bottom: .5em;
 }
+
+.shadow,
+button {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
 
 
 input,

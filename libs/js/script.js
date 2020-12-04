@@ -53,7 +53,7 @@ const getInfoById = (id) => {
 // Format the HTML for the profile editing modal 
 const formatEmployeeInfo = (employee) => {
 
-  let employeeHTML = $(`<div class="col-lg-5 col-sm-12 shadow-sm p-3 mb-3 mr-2 rounded employee-card ">
+  let employeeHTML = $(`<div class="col-12 col-lg-6 shadow p-3 mb-3 bg-white rounded ">
                       <h5 >${employee.firstName} ${employee.lastName}</h5>
 
                       <ul class="d-none d-md-block">

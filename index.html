@@ -18,21 +18,21 @@
     <!-- Custom styles for this template -->
     <link href="dashboard.css" rel="stylesheet">
     <link href="libs/css/style.css" rel="stylesheet">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
   </head>
 
   <body>
 
-
-
-
-   
-
     <div class="container-fluid ">
-      <div class="row">
+      <div class="row align-items">
 
       
 
-          <nav class="col-md-3 col-lg-2 col-sm-2 d-none d-md-block bg-light sidebar fixed-top" >
+          <nav class="col-md-3 col-lg-2 d-none d-md-block bg-light sidebar fixed-top shadow" >
             <div id="sidebar">
             <h3>Management</h3>
             <form>
@@ -54,16 +54,13 @@
                 <button  class="btn-primary btn col-sm-12" id="name-btn" type="button" >Search</button>
                 <button  class="btn-primary btn col-sm-12" type="button" id="add-profile-btn" data-toggle="modal" data-target="#addProfileModal">Add Employee</button>
   
-  
             </form>
             </div>
           </nav> 
   
-          
-
-        <main role="main" class="col-md-8 col-lg-10 ml-sm-auto pt-3 px-4">
-          <div class="d-flex flex-wrap flex-md-nowrap justify-content-between align-items-center pb-2 mb-3 ml-1 border-bottom" id="header">
-            <h1 class="h2">Dashboard </h1>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+          <div class="col d-flex flex-wrap flex-md-nowrap justify-content-between align-items-center pb-2 mb-3 ml-1 border-bottom rounded " id="header">
+            <h1 class="h3"> Company Directory </h1>
             <button class="d-sm-block d-md-none" id="mobile-menu-btn" data-toggle="modal" data-target="#mobileMenuModal">
               <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-menu-2" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -75,20 +72,19 @@
           </div>
          
           <h1 class="h2" id="results-title"></h1>
-          
-          <div class="col-12 col-md-8" id="results-container">
-            <div class="row shadow p-3 mb-5 bg-white rounded">
-              <div class="col shadow-sm p-3 mb-3 bg-white rounded">
-                <div class="row mt-3" id="results">
-                  
-                
-                </div>
-              </div>
-            </div>
-          </div>
+        
+          <div class=" shadow" id="results-container">
             
+            <div class="row shadow p-3 mb-5 ">
+                <div class="col  p-3 mb-3 ">
+                    <div class="row" id="results">
+                        
+                    </div>
+                    
+                </div>                    
+            </div>
+        </div>
           </div>
-
         </main>
       </div>
 
@@ -142,7 +138,8 @@
             <div>
               <h6>Edit a department</h6>
               <label for="edit-location-select">Department Name</label>
-              <select class="form-control" id="edit-department-select" name="edit-department-select"></select>
+              <select class="form-control" id="edit-department-select" name="edit-department-select">
+              </select>
 
               <input class="form-control" id="edit-department-name-input" type="text" name="edit-department-input" placeholder="Change name here...">
               <button type="button" class="btn btn-primary" id="edit-department-btn">Update</button>
